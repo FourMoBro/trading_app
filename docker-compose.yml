@@ -15,7 +15,7 @@ services:
             - CELERY_BROKER=redis://redis:6379/0
             - CELERY_BACKEND=redis://redis:6379/0
         depends_on:
-            - pgdb
+            #- pgdb
             - redis
     celery:
         build: .
@@ -30,17 +30,17 @@ services:
         depends_on:
             - django
             - redis
-    pgdb:
-        image: postgres
-        container_name: pgdb
-        environment: 
-            - POSTGRES_DB=postgres
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=postgres
-        volumes:
-            - ./pgdata:/var/lib/postgresql/data
-        ports:
-            - "5432:5432"
+    # pgdb:
+    #     image: postgres
+    #     container_name: pgdb
+    #     environment: 
+    #         - POSTGRES_DB=postgres
+    #         - POSTGRES_USER=postgres
+    #         - POSTGRES_PASSWORD=postgres
+    #     volumes:
+    #         - ./pgdata:/var/lib/postgresql/data
+    #     ports:
+    #         - "5432:5432"
     redis:
         image: "redis:alpine"
 
